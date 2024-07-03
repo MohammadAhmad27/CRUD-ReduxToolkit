@@ -5,11 +5,10 @@ import "./CustomModal.css";
 const CustomModal = ({ id, setShowPopup }) => {
   const allusers = useSelector((state) => state.app.users);
   const singleUser = allusers.filter((ele) => ele.id === id);
-  console.log("singleuser", singleUser);
 
   return (
-    <div className="modalBackground">
-      <div className="modalContainer">
+    <div className="Background">
+      <div className="Container">
         <button onClick={() => setShowPopup(false)}>Close</button>
         <br />
         <br />
