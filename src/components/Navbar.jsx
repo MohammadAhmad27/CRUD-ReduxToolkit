@@ -1,7 +1,21 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { searchUser } from "../features/userDetailSlics";
 
 const Navbar = () => {
   const location = useLocation();
+  const allUsers = useSelector((state) => state.app.users);
+  const [searchData, setSearchData] = useState("");
+  const dispatch = useDispatch();
+
+  const onChange = (e) => {
+    setSearchData(e.target.value);
+  };
+
+  useEffect(() => {
+    dispatch(searchUser(searchData));
+  }, [searchData, dispatch]);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -37,7 +51,7 @@ const Navbar = () => {
                   location.pathname === "/read" ? "active" : ""
                 }`}
               >
-                All Post 
+                All Post ({allUsers.length})
               </Link>
             </li>
           </ul>
@@ -46,6 +60,7 @@ const Navbar = () => {
             type="search"
             placeholder="Search"
             aria-label="Search"
+            onChange={onChange}
           />
         </div>
       </div>
