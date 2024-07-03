@@ -7,8 +7,8 @@ const CustomModal = ({ id, setShowPopup }) => {
   const singleUser = allusers.filter((ele) => ele.id === id);
 
   return (
-    <div className="Background">
-      <div className="Container">
+    <div className="modalBackground">
+      <div className="modalContainer">
         <button onClick={() => setShowPopup(false)}>Close</button>
         <br />
         <br />
