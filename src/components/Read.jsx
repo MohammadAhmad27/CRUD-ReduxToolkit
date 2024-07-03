@@ -93,13 +93,13 @@ const Read = () => {
                     View
                   </button>
                   <Link to={`/edit/${ele.id}`} className="card-link">
-                    Edit
+                    <button>Edit</button>
                   </Link>
                   <Link
                     onClick={() => dispatch(deleteUser(ele.id))}
                     className="card-link"
                   >
-                    Delete
+                    <button>Delete</button>
                   </Link>
                 </div>
               </div>
