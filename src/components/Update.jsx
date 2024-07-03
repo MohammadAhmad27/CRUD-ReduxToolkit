@@ -1,53 +1,16 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { updateUser } from "../features/userDetailSlics";
 
 const Update = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [updateData, setUpdateData] = useState({
-    name: "",
-    email: "",
-    age: "",
-    gender: "",
-  });
-
-  const { users } = useSelector((state) => state.app);
-
-  useEffect(() => {
-    if (id) {
-      const singleUser = users.filter((ele) => ele.id === id);
-      setUpdateData(singleUser[0]);
-    }
-  }, [id, users]);
-
-  const newData = (e) => {
-    setUpdateData({ ...updateData, [e.target.name]: e.target.value });
-  };
-
-  console.log("updated data", updateData);
-
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    dispatch(updateUser(updateData));
-    navigate("/read");
-  };
 
   return (
     <div>
       <h2 className="my-2">Edit the data</h2>
-      <form className="w-50 mx-auto my-5" onSubmit={handleUpdate}>
+      <form className="w-50 mx-auto my-5">
         <div className="mb-3">
           <label className="form-label">Name</label>
           <input
             type="text"
             name="name"
             className="form-control"
-            value={updateData && updateData.name}
-            onChange={newData}
           />
         </div>
         <div className="mb-3">
@@ -56,8 +19,6 @@ const Update = () => {
             type="email"
             name="email"
             className="form-control"
-            value={updateData && updateData.email}
-            onChange={newData}
           />
         </div>
         <div className="mb-3">
@@ -66,8 +27,6 @@ const Update = () => {
             type="text"
             name="age"
             className="form-control"
-            value={updateData && updateData.age}
-            onChange={newData}
           />
         </div>
         <div className="mb-3">
@@ -76,8 +35,6 @@ const Update = () => {
             name="gender"
             value="Male"
             type="radio"
-            checked={updateData && updateData.gender === "Male"}
-            onChange={newData}
           />
           <label className="form-check-label">Male</label>
         </div>
@@ -87,8 +44,6 @@ const Update = () => {
             name="gender"
             value="Female"
             type="radio"
-            checked={updateData && updateData.gender === "Female"}
-            onChange={newData}
           />
           <label className="form-check-label">Female</label>
         </div>
